@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mainlys Website Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+  :root{
+    --bg: #1b1f2b;
+    --bg-soft: #242a3a;
+    --bg-card: #2a3145;
+    --stripe-dark: #12151e;
+    --cream: #f3efe6;
+    --accent: #f4a259;   /* glowing raccoon eyes / streetlamp */
+    --accent-dim: #8a5d33;
+    --moss: #8fb39a;     /* park / forest green */
+    --text: #f3efe6;
+    --text-dim: #9aa1b5;
+    --line: #3a4154;
+    --sans: 'Nunito Sans', sans-serif;
+    --display: 'Baloo 2', sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 85% 8%, rgba(244,162,89,0.12), transparent 32%),
+      radial-gradient(circle at 12% 80%, rgba(143,179,154,0.08), transparent 35%);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  /* ===== Raccoon stripe bar (tail rings) ===== */
+  .stripe-bar{
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--stripe-dark) 0 28px,
+      var(--cream) 28px 40px,
+      var(--stripe-dark) 40px 68px,
+      var(--cream) 68px 80px
+    );
+  }
+
+  /* ===== Header ===== */
+  header{
+    padding: 56px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  header .stars{
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, var(--cream) 0, transparent 60%),
+      radial-gradient(2px 2px at 80% 30%, var(--cream) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 60% 70%, var(--cream) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 30% 80%, var(--cream) 0, transparent 60%),
+      radial-gradient(2px 2px at 50% 15%, var(--cream) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 90% 75%, var(--cream) 0, transparent 60%);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  header .content{ position: relative; }
+  header .eyebrow{
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--moss);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  header h1{
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    margin: 0;
+    color: var(--text);
+    letter-spacing: 0.01em;
+  }
+  header h1 .raccoon{
+    display: inline-block;
+    filter: drop-shadow(0 0 18px rgba(244,162,89,0.45));
+  }
+  header h1 span.highlight{ color: var(--accent); }
+  header p{
+    margin: 16px auto 0;
+    max-width: 540px;
+    color: var(--text-dim);
+    font-size: 15px;
+  }
+
+  /* ===== Toolbar ===== */
+  .toolbar{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(27,31,43,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+  }
+  .toolbar-inner{
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .search-row{
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 12px;
+  }
+  .search-row input[type="text"]{
+    flex: 1;
+    background: var(--bg-soft);
+    border: 2px solid var(--line);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 11px 16px;
+    border-radius: 999px;
+    outline: none;
+  }
+  .search-row input[type="text"]::placeholder{ color: #6b7286; }
+  .search-row input[type="text"]:focus{
+    border-color: var(--accent);
+  }
+  .search-row .icon{ font-size: 20px; flex-shrink: 0; }
+
+  .tag-filters{
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .tag-pill{
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 6px 16px;
+    border-radius: 999px;
+    border: 2px solid var(--line);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tag-pill:hover{ border-color: var(--accent-dim); color: var(--text); }
+  .tag-pill.active{
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #1b1f2b;
+  }
+
+  /* ===== Layout ===== */
+  main{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 36px 24px 80px;
+  }
+
+  .results-count{
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    text-align: right;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* ===== Card ===== */
+  .card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before{
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--stripe-dark) 0 14px,
+      var(--cream) 14px 20px
+    );
+    opacity: 0.5;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    border-color: var(--accent-dim);
+    box-shadow: 0 10px 24px -12px rgba(244,162,89,0.35);
+  }
+  .card.hidden{ display: none; }
+
+  .card-top{
+    display: flex; align-items: center; gap: 12px;
+  }
+  .card-icon{
+    font-size: 26px;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-soft);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+  .card h3{
+    font-family: var(--display);
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .card p{
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-dim);
+    flex: 1;
+  }
+
+  .card-tags{
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .card-tags .tag{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--moss);
+  }
+
+  .card-cta{
+    font-family: var(--display);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 6px;
+    margin-top: auto;
+  }
+  .card:hover .card-cta{ gap: 10px; }
+  .card-cta .arrow{ transition: transform 0.15s ease; }
+  .card:hover .card-cta .arrow{ transform: translateX(3px); }
+
+  /* Disabled / coming soon */
+  .card.disabled{
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .card.disabled .card-cta{ color: var(--text-dim); }
+
+  /* ===== Empty state ===== */
+  .empty{
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+    grid-column: 1 / -1;
+  }
+  .empty .raccoon-big{ font-size: 48px; display: block; margin-bottom: 12px; }
+  .empty strong{
+    display: block; font-family: var(--display); font-size: 1.3rem;
+    color: var(--accent); margin-bottom: 6px;
+  }
+
+  footer{
+    text-align: center;
+    padding: 28px 24px 40px;
+    font-size: 11px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--line);
+  }
+  footer a{ color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 560px){
+    .search-row{ flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stripe-bar"></div>
+
+<header>
+  <div class="stars"></div>
+  <div class="content">
+    <div class="eyebrow">// Nachts unterwegs, alles durchwühlt</div>
+    <h1><span class="raccoon">🦝</span> Mainlys <span class="highlight">Website</span> Hub</h1>
+    <p>Eine kleine Sammelstelle für alles, was ich so baue — von Gaming-Guides bis Tools. Einfach durchsuchen oder nach Thema filtern.</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-row">
+      <span class="icon">🔍</span>
+      <input type="text" id="search" placeholder="Seite suchen… z.B. &quot;Payday&quot;, &quot;Tool&quot;, &quot;Guide&quot;">
+    </div>
+    <div class="tag-filters" id="tagFilters">
+      <button class="tag-pill active" data-tag="all">Alle</button>
+      <!-- weitere Pills werden automatisch aus den Daten generiert -->
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <div class="results-count" id="resultsCount"></div>
+  <div class="grid" id="grid"></div>
+
+</main>
+
+<footer>
+  Mainlys Website Hub · Stand: Juni 2026 🦝
+</footer>
+
+<script>
+/*
+  NEUE SEITE HINZUFÜGEN:
+  Einfach ein weiteres Objekt in das "sites"-Array eintragen.
+  - icon: ein Emoji als Platzhalter-Icon
+  - name: Titel der Seite
+  - desc: kurze Beschreibung
+  - tags: Array von Schlagworten (Spiel/Thema) — werden automatisch zu Filter-Pills
+  - url: Dateiname / Link (relativ im selben Repo, z.B. "meine-seite.html")
+  - disabled: true setzen für "Bald verfügbar"-Platzhalter (kein Link nötig)
+*/
+const sites = [
+  {
+    icon: "🔫",
+    name: "PAYDAY 2 DLC Guide",
+    desc: "Alle Waffen- & Munitions-DLCs durchsuchen, nach Waffenart filtern und Ampel-Empfehlungen ansehen.",
+    tags: ["Gaming", "Payday 2"],
+    url: "payday2-dlc-guide.html"
+  },
+  {
+    icon: "🧩",
+    name: "Weitere Seiten folgen…",
+    desc: "Hier landen zukünftige Guides, Tools und Spielereien.",
+    tags: ["Bald"],
+    disabled: true
+  },
+];
+
+const grid = document.getElementById('grid');
+const searchInput = document.getElementById('search');
+const tagFilters = document.getElementById('tagFilters');
+const resultsCount = document.getElementById('resultsCount');
+
+let activeTag = 'all';
+
+// Tag-Pills automatisch aus allen vorkommenden Tags generieren (außer "Bald")
+const allTags = [...new Set(sites.flatMap(s => s.tags).filter(t => t !== 'Bald'))].sort();
+allTags.forEach(tag => {
+  const btn = document.createElement('button');
+  btn.className = 'tag-pill';
+  btn.dataset.tag = tag;
+  btn.textContent = tag;
+  tagFilters.appendChild(btn);
+});
+
+function buildCard(site){
+  const isDisabled = !!site.disabled;
+  const el = document.createElement(isDisabled ? 'div' : 'a');
+  el.className = 'card' + (isDisabled ? ' disabled' : '');
+  if(!isDisabled){
+    el.href = site.url;
+  }
+  el.dataset.searchable = (site.name + ' ' + site.desc + ' ' + site.tags.join(' ')).toLowerCase();
+  el.dataset.tags = site.tags.join(',');
+
+  el.innerHTML = `
+    <div class="card-top">
+      <div class="card-icon">${site.icon}</div>
+      <h3>${site.name}</h3>
+    </div>
+    <p>${site.desc}</p>
+    <div class="card-tags">
+      ${site.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+    </div>
+    <div class="card-cta">${isDisabled ? 'Bald verfügbar' : 'Öffnen'} <span class="arrow">→</span></div>
+  `;
+  return el;
+}
+
+sites.forEach(site => grid.appendChild(buildCard(site)));
+
+function applyFilters(){
+  const term = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const matchesTerm = !term || card.dataset.searchable.includes(term);
+    const matchesTag = activeTag === 'all' || card.dataset.tags.split(',').includes(activeTag);
+    const show = matchesTerm && matchesTag;
+    card.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+
+  let empty = document.getElementById('emptyState');
+  if(visible === 0){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.id = 'emptyState';
+      empty.className = 'empty';
+      empty.innerHTML = '<span class="raccoon-big">🦝</span><strong>Nichts gefunden</strong>Da war wohl nichts in dieser Mülltonne… probier einen anderen Begriff oder Filter.';
+      grid.appendChild(empty);
+    }
+  } else if(empty){
+    empty.remove();
+  }
+
+  resultsCount.textContent = `${visible} von ${sites.length} Seiten`;
+}
+
+searchInput.addEventListener('input', applyFilters);
+tagFilters.addEventListener('click', (e) => {
+  const btn = e.target.closest('.tag-pill');
+  if(!btn) return;
+  activeTag = btn.dataset.tag;
+  tagFilters.querySelectorAll('.tag-pill').forEach(p => p.classList.toggle('active', p === btn));
+  applyFilters();
+});
+
+applyFilters();
+</script>
+
+</body>
+</html>
