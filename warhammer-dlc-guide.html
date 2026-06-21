@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Total War: Warhammer DLC Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root{
+    --bg: #0e0b07;
+    --bg-panel: #17120c;
+    --bg-card: #1d1710;
+    --gold: #c9a84c;
+    --gold-dim: #7a6330;
+    --gold-bright: #e8c96a;
+    --crimson: #7a1a1a;
+    --crimson-bright: #c0392b;
+    --green: #3a7a3a;
+    --green-bright: #5fae5a;
+    --amber: #b07020;
+    --amber-bright: #d4922e;
+    --text: #e8dfc8;
+    --text-dim: #9a8f78;
+    --line: #2e2518;
+    --display: 'Cinzel', serif;
+    --body: 'Crimson Text', serif;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  .heraldic-bar{
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--gold) 0 16px,
+      #0e0b07 16px 24px,
+      var(--crimson-bright) 24px 40px,
+      #0e0b07 40px 48px,
+      var(--gold) 48px 64px,
+      #0e0b07 64px 72px
+    );
+  }
+
+  header{
+    padding: 56px 24px 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(139,28,28,0.18), transparent 65%),
+      linear-gradient(180deg, rgba(201,168,76,0.06), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before{
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 20%, rgba(201,168,76,0.3) 0, transparent 60%),
+      radial-gradient(1px 1px at 82% 35%, rgba(201,168,76,0.2) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 55% 70%, rgba(201,168,76,0.2) 0, transparent 60%),
+      radial-gradient(1px 1px at 30% 85%, rgba(201,168,76,0.15) 0, transparent 60%),
+      radial-gradient(1.5px 1.5px at 92% 12%, rgba(201,168,76,0.25) 0, transparent 60%),
+      radial-gradient(1px 1px at 68% 45%, rgba(201,168,76,0.15) 0, transparent 60%);
+    pointer-events: none;
+  }
+  header .content{ position: relative; }
+  .eyebrow{
+    font-family: var(--display);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  header h1{
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(1.9rem, 5.5vw, 3.8rem);
+    margin: 0;
+    color: var(--text);
+    text-shadow: 2px 4px 0 rgba(0,0,0,0.9), 0 0 50px rgba(201,168,76,0.15);
+    letter-spacing: 0.03em;
+  }
+  header h1 span{ color: var(--gold); }
+  header p{
+    margin: 16px auto 0;
+    max-width: 620px;
+    color: var(--text-dim);
+    font-size: 15px;
+    font-style: italic;
+  }
+  .back-link{
+    display: inline-block;
+    margin-top: 22px;
+    color: var(--gold);
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--gold-dim);
+    padding: 8px 16px;
+    border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .back-link:hover{ background: var(--gold); color: #0e0b07; }
+
+  .toolbar{
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(14,11,7,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 24px;
+  }
+  .toolbar-inner{
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch;
+  }
+  .field{ display: flex; flex-direction: column; gap: 5px; }
+  .field label{
+    font-family: var(--display);
+    font-size: 9px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .search-field{ flex: 2 1 260px; }
+  .filter-field{ flex: 1 1 165px; }
+
+  input[type="text"], select{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 15px;
+    padding: 10px 12px;
+    border-radius: 2px;
+    outline: none;
+    width: 100%;
+  }
+  input[type="text"]::placeholder{ color: #5a5040; }
+  input[type="text"]:focus, select:focus{
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  select{ cursor: pointer; }
+  select option, select optgroup{ background: #17120c; }
+
+  .results-count{
+    align-self: center;
+    font-family: var(--display);
+    font-size: 10px; letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-left: auto;
+    white-space: nowrap;
+    padding-top: 18px;
+  }
+
+  main{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  .tome-note{
+    border: 1px solid var(--gold-dim);
+    background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(201,168,76,0.02));
+    border-radius: 2px;
+    padding: 20px 24px 20px 28px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .tome-note::before{
+    content: '📜';
+    position: absolute; top: -14px; left: 18px;
+    font-size: 22px; background: var(--bg); padding: 0 6px;
+  }
+  .tome-note h2{
+    font-family: var(--display);
+    font-size: 0.85rem; color: var(--gold);
+    margin: 0 0 10px; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tome-note p{ margin: 5px 0; font-size: 14px; color: var(--text); }
+  .tome-note p:last-child{ margin-bottom: 0; }
+  .tome-note strong{ color: var(--gold-bright); }
+
+  .legend{
+    display: flex; flex-wrap: wrap; gap: 20px;
+    font-family: var(--display); font-size: 10px; letter-spacing: 0.05em;
+    color: var(--text-dim); margin-bottom: 28px; align-items: center;
+  }
+  .legend .item{ display: flex; align-items: center; gap: 7px; }
+  .legend .dot{ width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .legend .dot.green{ background: var(--green-bright); }
+  .legend .dot.yellow{ background: var(--amber-bright); }
+  .legend .dot.red{ background: var(--crimson-bright); }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 18px;
+  }
+
+  .card{
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card::before{
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .card.rating-green::before{ background: var(--green); }
+  .card.rating-yellow::before{ background: var(--amber); }
+  .card.rating-red::before{ background: var(--crimson); }
+  .card:hover{
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px -8px rgba(201,168,76,0.18);
+  }
+  .card.hidden{ display: none; }
+
+  .game-badge{
+    display: inline-block;
+    font-family: var(--display);
+    font-size: 8px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    margin-bottom: 4px;
+  }
+  .game-badge.wh1{ color: #7ab0d0; }
+  .game-badge.wh2{ color: #c9a84c; }
+  .game-badge.wh3{ color: #c0392b; }
+
+  .card-top{
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  }
+  .card-title-block{ flex: 1; }
+  .card h3{
+    font-family: var(--display);
+    font-size: 1.05rem; margin: 0;
+    line-height: 1.25; color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .card.has-stamp h3{ padding-right: 80px; }
+
+  .price-block{ text-align: right; white-space: nowrap; flex-shrink: 0; }
+  .price-block .price{
+    display: block;
+    font-family: var(--display);
+    font-size: 1.05rem; color: var(--gold); font-weight: 700;
+  }
+  .price-block .year{ font-size: 11px; color: var(--text-dim); }
+
+  .stamp{
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--display); font-weight: 700;
+    font-size: 8px; letter-spacing: 0.18em;
+    padding: 5px 10px;
+    border: 2px solid currentColor;
+    border-radius: 2px;
+    transform: rotate(-5deg);
+    text-transform: uppercase;
+    pointer-events: none; opacity: 0.9;
+  }
+  .stamp.green{ color: var(--green-bright); }
+  .stamp.yellow{ color: var(--amber-bright); }
+  .stamp.red{ color: var(--crimson-bright); }
+
+  .factions{ display: flex; flex-wrap: wrap; gap: 6px; }
+  .faction-tag{
+    font-family: var(--display);
+    font-size: 8px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px; border-radius: 2px;
+    border: 1px solid; white-space: nowrap;
+  }
+  .faction-tag.order  { color: #6db8e8; border-color: #3a6080; background: rgba(109,184,232,0.06); }
+  .faction-tag.chaos  { color: #c03030; border-color: #6a1a1a; background: rgba(192,48,48,0.07); }
+  .faction-tag.destruction{ color: #7aba5a; border-color: #3a6020; background: rgba(122,186,90,0.06); }
+  .faction-tag.death  { color: #9878c8; border-color: #4a3070; background: rgba(152,120,200,0.07); }
+
+  .section-label{
+    font-family: var(--display);
+    font-size: 8px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 3px;
+  }
+
+  .lords{ list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+  .lords li{ font-size: 14px; display: flex; align-items: baseline; gap: 8px; }
+  .lord-icon{ color: var(--gold); font-size: 11px; flex-shrink: 0; }
+  .lord-name{ color: var(--text); }
+  .lord-faction{ font-size: 12px; color: var(--text-dim); font-style: italic; }
+
+  .units-list{ font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+  .note{
+    font-size: 13.5px; font-style: italic; color: var(--text-dim);
+    border-top: 1px solid var(--line);
+    padding-top: 10px; margin-top: auto;
+  }
+
+  .card-footer{
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-top: 4px;
+  }
+  .steam-link{
+    font-family: var(--display);
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 7px 12px; border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+  .steam-link:hover{ background: var(--gold); color: #0e0b07; }
+  .steam-link.delisted{ color: var(--crimson-bright); border-color: var(--crimson); pointer-events: none; }
+
+  .empty{
+    text-align: center; padding: 60px 20px;
+    color: var(--text-dim); grid-column: 1 / -1;
+  }
+  .empty strong{
+    display: block; font-family: var(--display);
+    font-size: 1.2rem; color: var(--gold);
+    margin-bottom: 8px; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  footer{
+    text-align: center; padding: 28px 24px 40px;
+    font-size: 12px; color: var(--text-dim);
+    border-top: 1px solid var(--line);
+    font-style: italic;
+  }
+  footer a{ color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 640px){
+    .toolbar-inner{ flex-direction: column; }
+    .results-count{ margin-left: 0; padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="heraldic-bar"></div>
+
+<header>
+  <div class="content">
+    <div class="eyebrow">// Schriften des Großen Wesens // Archiv der Feldzüge</div>
+    <h1>Total War: <span>Warhammer</span> DLC Guide</h1>
+    <p>Alle DLC-Packs für Warhammer I, II & III auf einen Blick — welche Lords, Fraktionen und Einheiten stecken in welchem Pack?</p>
+    <a class="back-link" href="index.html">← Zurück zum Hub</a>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="field search-field">
+      <label for="search">Suche</label>
+      <input type="text" id="search" placeholder="Lord, Einheit oder DLC… z.B. &quot;Archaon&quot;, &quot;Tomb Kings&quot;, &quot;Ikit Claw&quot;">
+    </div>
+    <div class="field filter-field">
+      <label for="gameFilter">Spiel</label>
+      <select id="gameFilter">
+        <option value="all">Alle Spiele</option>
+        <option value="wh1">Warhammer I</option>
+        <option value="wh2">Warhammer II</option>
+        <option value="wh3">Warhammer III</option>
+      </select>
+    </div>
+    <div class="field filter-field">
+      <label for="factionFilter">Fraktion</label>
+      <select id="factionFilter">
+        <option value="all">Alle Fraktionen</option>
+        <optgroup label="⚔ Ordnung">
+          <option value="Empire">Das Imperium</option>
+          <option value="Dwarfs">Zwerge</option>
+          <option value="High Elves">Hochelfen</option>
+          <option value="Wood Elves">Waldelfen</option>
+          <option value="Lizardmen">Eidechsenmenschen</option>
+          <option value="Grand Cathay">Grand Cathay</option>
+          <option value="Kislev">Kislev</option>
+        </optgroup>
+        <optgroup label="🐗 Zerstörung">
+          <option value="Greenskins">Grünhäute</option>
+          <option value="Beastmen">Beastmen</option>
+          <option value="Norsca">Norsca</option>
+          <option value="Ogre Kingdoms">Oger-Königreiche</option>
+        </optgroup>
+        <optgroup label="🔥 Chaos">
+          <option value="Warriors of Chaos">Chaos-Krieger</option>
+          <option value="Khorne">Khorne</option>
+          <option value="Nurgle">Nurgle</option>
+          <option value="Tzeentch">Tzeentch</option>
+          <option value="Slaanesh">Slaanesh</option>
+          <option value="Chaos Dwarfs">Chaos-Zwerge</option>
+        </optgroup>
+        <optgroup label="💀 Tod">
+          <option value="Vampire Counts">Vampirgrafen</option>
+          <option value="Vampire Coast">Vampirküste</option>
+          <option value="Tomb Kings">Grabkönige</option>
+          <option value="Dark Elves">Dunkelelfen</option>
+          <option value="Skaven">Skaven</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="field filter-field">
+      <label for="ratingFilter">Empfehlung</label>
+      <select id="ratingFilter">
+        <option value="all">Alle Bewertungen</option>
+        <option value="green">⚔ Must-Have</option>
+        <option value="yellow">🛡 Situativ</option>
+        <option value="red">💀 Nischeninhalt</option>
+      </select>
+    </div>
+    <div class="results-count" id="resultsCount"></div>
+  </div>
+</div>
+
+<main>
+
+  <div class="tome-note">
+    <h2>Wichtig: Die Trilogie & Immortal Empires</h2>
+    <p><strong>Warhammer III</strong> ist das neueste Spiel — wer nur einen Titel kauft, kauft diesen. Der kostenlose <strong>Immortal Empires</strong>-Modus (für WH3-Besitzer) kombiniert Inhalte aller drei Spiele auf einer riesigen Karte.</p>
+    <p>WH1- und WH2-DLCs werden in Immortal Empires freigeschaltet, wenn du die jeweiligen Basispiele besitzt. Alle Lords und Fraktionen aus älteren DLCs sind dann auch in WH3 spielbar.</p>
+  </div>
+
+  <div class="legend">
+    <div class="item"><span class="dot green"></span> Must-Have / Stark empfohlen</div>
+    <div class="item"><span class="dot yellow"></span> Situativ / Gut für Fans der Fraktion</div>
+    <div class="item"><span class="dot red"></span> Nischeninhalt / Fun-Faktor</div>
+    <div class="item" style="color:var(--gold-dim)">💶 Steam-Standardpreis ohne Sale</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+</main>
+
+<footer>
+  Stand: Juni 2026 · Preise sind Steam-Standardpreise (EUR) ohne Rabatt · Steam hat regelmäßig Sales mit bis zu −75% ·
+  <a href="index.html">Zurück zum Hub</a>
+</footer>
+
+<script>
+const RATING_LABEL = { green: 'Must-Have', yellow: 'Situativ', red: 'Nische' };
+
+const FACTION_ALIGN = {
+  'Empire':'order','Dwarfs':'order','High Elves':'order','Wood Elves':'order',
+  'Lizardmen':'order','Grand Cathay':'order','Kislev':'order','Bretonnia':'order',
+  'Greenskins':'destruction','Beastmen':'destruction','Norsca':'destruction','Ogre Kingdoms':'destruction',
+  'Warriors of Chaos':'chaos','Khorne':'chaos','Nurgle':'chaos',
+  'Tzeentch':'chaos','Slaanesh':'chaos','Chaos Dwarfs':'chaos',
+  'Vampire Counts':'death','Vampire Coast':'death',
+  'Tomb Kings':'death','Dark Elves':'death','Skaven':'death',
+};
+
+const dlcs = [
+  /* ── WARHAMMER I ── */
+  {
+    game:'wh1', name:'Chaos Warriors Race Pack',
+    steamId:404022, price:'7,99 €', year:2016, rating:'green',
+    factions:['Warriors of Chaos'],
+    lords:[
+      {name:'Archaon der Auserwählte',faction:'Warriors of Chaos'},
+      {name:'Sigvald der Prächtige',faction:'Warriors of Chaos'},
+      {name:'Kholek Suneater',faction:'Warriors of Chaos'},
+    ],
+    units:'Vollständige Chaos-Krieger-Fraktion: Chaos Warriors, Chaos Knights, Dragon Ogres, Trolls, Warshrines, Shaggoth',
+    note:'Fügt die spielbare Chaos-Krieger-Fraktion hinzu. War anfangs kostenlos, ist jetzt kostenpflichtig. Archaon ist eine der ikonischsten Figuren der gesamten Warhammer-Lore.'
+  },
+  {
+    game:'wh1', name:'Call of the Beastmen',
+    steamId:404015, price:'11,99 €', year:2016, rating:'green',
+    factions:['Beastmen'],
+    lords:[
+      {name:'Khazrak One-Eye',faction:'Beastmen'},
+      {name:'Malagor der Dunkle Omen',faction:'Beastmen'},
+    ],
+    units:'Vollständige Beastmen-Fraktion: Gors, Ungors, Bestigors, Minotaurs, Cygor, Ghorgon, Razorgors',
+    note:'Komplett neue Fraktion mit einzigartigem Gameplay: kein normales Siedlungsmanagement, stattdessen Herdstein-System in dunklen Wäldern. Sehr anders als andere Kampagnen.'
+  },
+  {
+    game:'wh1', name:'The Grim and the Grave',
+    steamId:404017, price:'7,99 €', year:2016, rating:'green',
+    factions:['Empire','Vampire Counts'],
+    lords:[
+      {name:'Volkmar der Grimme',faction:'Empire'},
+      {name:'Mannfred von Carstein',faction:'Vampire Counts'},
+    ],
+    units:'Flagellanten, Dampfpanzer-Variante (Empire); Mortis Engine, Mortuary Cult (Vampire Counts)',
+    note:'Eines der besten Lord-Pack-DLCs — zwei starke, einzigartige Legendary Lords plus wertvolle Einheiten für zwei der wichtigsten WH1-Fraktionen. Lohnt sich fast immer.'
+  },
+  {
+    game:'wh1', name:'The King and the Warlord',
+    steamId:404018, price:'7,99 €', year:2016, rating:'green',
+    factions:['Dwarfs','Greenskins'],
+    lords:[
+      {name:'Belegar Eisenhammer',faction:'Dwarfs'},
+      {name:'Skarsnik',faction:'Greenskins'},
+    ],
+    units:'Gyrobomber (Dwarfs); Squig-Einheiten, Night Goblin Big Boss (Greenskins)',
+    note:'Skarsnik ist einer der beliebtesten und charismatischsten Lords im gesamten Spiel. Belegar mit einzigartigem Karak Eight Peaks-Szenario (Rückerobe deine Heimat).'
+  },
+  {
+    game:'wh1', name:'Realm of the Wood Elves',
+    steamId:404016, price:'11,99 €', year:2016, rating:'green',
+    factions:['Wood Elves'],
+    lords:[
+      {name:'Orion, König im Wäldchen',faction:'Wood Elves'},
+      {name:'Durthu',faction:'Wood Elves'},
+    ],
+    units:'Vollständige Waldelfen-Fraktion: Eternal Guard, Waywatchers, Glade Riders, Treekin, Treemen, Wardancers, Great Eagles',
+    note:'Völlig einzigartiger Spielstil — lebt in Athel Loren, kein normales Siedlungsmanagement. Stattdessen Unterreich-Baum-Mechanik. Ranged-fokussiert mit hohem Skill-Cap.'
+  },
+  {
+    game:'wh1', name:'Norsca',
+    steamId:534331, price:'7,99 €', year:2017, rating:'green',
+    factions:['Norsca'],
+    lords:[
+      {name:'Wulfric der Wanderer',faction:'Norsca'},
+      {name:'Throgg der Trollkönig',faction:'Norsca'},
+    ],
+    units:'Vollständige Norsca-Fraktion: Marauders, Skin Wolves, War Mammoths, Frost-wyrms, Fimir',
+    note:'Neue spielbare Fraktion mit Monster-Jagd-System und Chaos-Gottheit-Gefälligkeiten. Starke Barbaren-Ästhetik. Einer der solidesten WH1-Rassen-DLCs.'
+  },
+
+  /* ── WARHAMMER II ── */
+  {
+    game:'wh2', name:'Rise of the Tomb Kings',
+    steamId:626153, price:'11,99 €', year:2018, rating:'green',
+    factions:['Tomb Kings'],
+    lords:[
+      {name:'Settra der Unverwüstliche',faction:'Tomb Kings'},
+      {name:'High Queen Khalida',faction:'Tomb Kings'},
+      {name:'Grand Hierophant Khatep',faction:'Tomb Kings'},
+      {name:'Arkhan der Schwarze',faction:'Tomb Kings'},
+    ],
+    units:'Vollständige Grabkönige-Fraktion: Skeleton Warriors & Archers, Tomb Guard, Ushabti, Bone Giants, Sphinxes, Casket of Souls',
+    note:'Vier (!) Legendary Lords in einem Pack. Einzigartiges Gameplay ohne Söldnersystem — stattdessen Grabfluch und antike Konstrukte. Settra ist eine absolut ikonische Figur der Warhammer-Lore.'
+  },
+  {
+    game:'wh2', name:'Queen and the Crone',
+    steamId:734927, price:'7,99 €', year:2018, rating:'green',
+    factions:['High Elves','Dark Elves'],
+    lords:[
+      {name:'Alarielle die Strahlende',faction:'High Elves'},
+      {name:'Hellebron',faction:'Dark Elves'},
+    ],
+    units:'Sisters of Avelorn, Handmaidens (High Elves); Doomfire Warlocks, Bloodwrack Shrine (Dark Elves)',
+    note:'Alarielle ist eine der stärksten Magie-Lords im Spiel. Hellebron mit einzigartiger Blutkönigin-Mechanik: Jährliches Blutbad-Event bestimmt ihre Stärke für das nächste Jahr.'
+  },
+  {
+    game:'wh2', name:'The Prophet and the Warlock',
+    steamId:934011, price:'7,99 €', year:2019, rating:'green',
+    factions:['Lizardmen','Skaven'],
+    lords:[
+      {name:'Tehenhauin',faction:'Lizardmen'},
+      {name:'Ikit Claw',faction:'Skaven'},
+    ],
+    units:'Skink Oracle on Terradon (Lizardmen); Ratling Gun Weapon Team, Warplock Jezzails, Warp-Grinder (Skaven)',
+    note:'Ikit Claw gilt weithin als einer der stärksten Lords im gesamten Spiel dank seiner Warp-Technologie — inklusive funktionierender Atomwaffe. Pflicht für jeden Skaven-Spieler.'
+  },
+  {
+    game:'wh2', name:'The Hunter and the Beast',
+    steamId:1001000, price:'7,99 €', year:2019, rating:'yellow',
+    factions:['Empire','Lizardmen'],
+    lords:[
+      {name:'Markus Wulfhart',faction:'Empire'},
+      {name:'Nakai der Wanderer',faction:'Lizardmen'},
+    ],
+    units:'Huntsmen General, Amber Wizard (Empire); Blessed Stegadon, zusätzliche Skink-Einheiten (Lizardmen)',
+    note:'Wulfhart hat einzigartige Jäger-Mechanik und Kriegsziele in der Neuen Welt. Nakai wandert als Vasall komplett ohne eigene Siedlungen — sehr ungewöhnlicher Spielstil.'
+  },
+  {
+    game:'wh2', name:'The Shadow and the Blade',
+    steamId:1094780, price:'7,99 €', year:2019, rating:'yellow',
+    factions:['Dark Elves','Skaven'],
+    lords:[
+      {name:'Malus Darkblade',faction:'Dark Elves'},
+      {name:'Deathmaster Snikch',faction:'Skaven'},
+    ],
+    units:'Bloodwrack Medusa, War Hydra-Variante (Dark Elves); Eshin Triads, Death Runners (Skaven)',
+    note:'Malus Darkblade mit einzigartiger Tz\'arkan-Dämonen-Mechanik: Gib der Besessenheit nach für Macht, oder kämpfe dagegen an. Snikch ist hervorragend für Clan Eshin (Assassinen-Stil).'
+  },
+  {
+    game:'wh2', name:'The Twisted and the Twilight',
+    steamId:1148820, price:'7,99 €', year:2020, rating:'yellow',
+    factions:['Wood Elves','Skaven'],
+    lords:[
+      {name:'Sisters of Twilight',faction:'Wood Elves'},
+      {name:'Grey Seer Thanquol',faction:'Skaven'},
+    ],
+    units:'Neue Reittiere für Waldelfen-Einheiten (Wood Elves); Brood Horror Mount, Hell Pit Abomination-Variante (Skaven)',
+    note:'Thanquol ist einzigartig wegen Boneripper — seinen riesigen persönlichen Rattling-Oger-Leibwächtern. Sisters of Twilight mit starkem Raiding-Gameplay tief in feindlichem Territorium.'
+  },
+  {
+    game:'wh2', name:'The Silence and the Fury',
+    steamId:1505581, price:'7,99 €', year:2021, rating:'yellow',
+    factions:['Lizardmen','Beastmen'],
+    lords:[
+      {name:'Oxyotl',faction:'Lizardmen'},
+      {name:'Taurox der Messingbulle',faction:'Beastmen'},
+    ],
+    units:'Chameleon Stalkers on Terradons (Lizardmen); Ghorgon, Jabberslythe (Beastmen)',
+    note:'Letztes WH2-DLC. Taurox hat eine einzigartige Momentum-Mechanik: Solange er marschiert und kämpft, wächst seine Macht. Stehenbleiben kostet Boni. Oxyotl mit Seer-Visionen-System.'
+  },
+
+  /* ── WARHAMMER III ── */
+  {
+    game:'wh3', name:'Champions of Chaos',
+    steamId:1880720, price:'17,99 €', year:2022, rating:'green',
+    factions:['Khorne','Nurgle','Tzeentch','Slaanesh'],
+    lords:[
+      {name:'Valkia die Blutige',faction:'Khorne'},
+      {name:'Festus der Seuchenpriester',faction:'Nurgle'},
+      {name:'Vilitch der Verfluchling',faction:'Tzeentch'},
+      {name:'Azazel, Prinz von Slaanesh',faction:'Slaanesh'},
+    ],
+    units:'Einheiten und Upgrades für alle vier Chaos-Götter-Fraktionen, zusätzliche Daemon Prince-Anpassungen',
+    note:'Erstes großes WH3-DLC — je ein starker Legendary Lord pro Chaos-Gottheit. Valkia ist besonders beliebt. Erweitert das WH3-Startgefühl für Chaos-Spieler erheblich.'
+  },
+  {
+    game:'wh3', name:'Forge of the Chaos Dwarfs',
+    steamId:2003210, price:'17,99 €', year:2023, rating:'green',
+    factions:['Chaos Dwarfs'],
+    lords:[
+      {name:'Astragoth Ironhand',faction:'Chaos Dwarfs'},
+      {name:'Drazhoath der Aschenreiter',faction:'Chaos Dwarfs'},
+      {name:'Zhatan der Schwarze',faction:'Chaos Dwarfs'},
+    ],
+    units:'Vollständige Chaos-Zwerge-Fraktion: Infernal Guard, Blunderbusses, Iron Daemon War Engine, Kdaai Destroyers, Great Taurus, Lammasu, Magma Cannon',
+    note:'Völlig neue Fraktion mit komplexer Industriemechanik (die Zwergen-Schmiede des Chaos). Einzigartiges Sklavenarbeits-System, dunkle industrielle Ästhetik. Eines der am besten aufgenommenen Race-DLCs überhaupt.'
+  },
+  {
+    game:'wh3', name:'Shadows of Change',
+    steamId:2131690, price:'17,99 €', year:2023, rating:'yellow',
+    factions:['Grand Cathay','Tzeentch','Kislev'],
+    lords:[
+      {name:'Yuan Bo, der Jadedrachon',faction:'Grand Cathay'},
+      {name:'The Changeling',faction:'Tzeentch'},
+      {name:'Mother Ostankya',faction:'Kislev'},
+    ],
+    units:'Jet-Reittiere für Cathay-Einheiten; Pink Horrors teilen sich in Blue/Brimstone Horrors (Tzeentch); Hag-Einheiten, Hexen-Unterstützung (Kislev)',
+    note:'War beim Release kontrovers (Preis/Leistung), wurde durch spätere kostenlose Updates aufgewertet. Mother Ostankya mit einzigartiger Hexen-Waldmechanik. The Changeling mit Tarnungs-Gameplay.'
+  },
+  {
+    game:'wh3', name:'Thrones of Decay',
+    steamId:2542570, price:'17,99 €', year:2024, rating:'green',
+    factions:['Empire','Dwarfs','Nurgle'],
+    lords:[
+      {name:'Elspeth von Draken',faction:'Empire'},
+      {name:'Malakai Makaisson',faction:'Dwarfs'},
+      {name:'Tamurkhan der Madenwurm',faction:'Nurgle'},
+    ],
+    units:'Dampftank-Varianten, Hochmagier-Reittiere (Empire); Drachenbahn-System, neue Gyrocopter (Dwarfs); Pox Riders, Bile Trolls, Rot Flies (Nurgle)',
+    note:'Eines der am besten aufgenommenen WH3-DLCs. Elspeth revitalisiert die Empire-Magie komplett. Malakai mit einzigartigem Drachenbahn-Erkundungssystem. Tamurkhan als zähester Nurgle-Lord.'
+  },
+  {
+    game:'wh3', name:'Omens of Destruction',
+    steamId:2688860, price:'17,99 €', year:2024, rating:'green',
+    factions:['Greenskins','Ogre Kingdoms','Khorne'],
+    lords:[
+      {name:'Gorbad Ironclaw',faction:'Greenskins'},
+      {name:'Skrag der Schlächter',faction:'Ogre Kingdoms'},
+      {name:'Skulltaker',faction:'Khorne'},
+    ],
+    units:'Einheiten für Grünhäute, Oger-Königreiche und Khorne-Dämonen',
+    note:'Letztes großes DLC (Stand: Juni 2026). Gorbad Ironclaw ist einer der legendärsten Greenskin-Kriegsherren der gesamten Warhammer-Lore. Skrag als lang ersehnter Oger-Lord.'
+  },
+];
+
+const grid = document.getElementById('grid');
+const searchInput = document.getElementById('search');
+const gameFilter = document.getElementById('gameFilter');
+const factionFilter = document.getElementById('factionFilter');
+const ratingFilter = document.getElementById('ratingFilter');
+const resultsCount = document.getElementById('resultsCount');
+
+function buildCard(dlc){
+  const card = document.createElement('article');
+  card.className = `card has-stamp rating-${dlc.rating}`;
+  card.dataset.game = dlc.game;
+  card.dataset.rating = dlc.rating;
+  card.dataset.factions = dlc.factions.join(',');
+  card.dataset.searchable = (
+    dlc.name + ' ' +
+    dlc.factions.join(' ') + ' ' +
+    dlc.lords.map(l => l.name + ' ' + l.faction).join(' ') + ' ' +
+    dlc.units
+  ).toLowerCase();
+
+  const stamp = document.createElement('div');
+  stamp.className = `stamp ${dlc.rating}`;
+  stamp.textContent = RATING_LABEL[dlc.rating];
+  card.appendChild(stamp);
+
+  const gameNames = { wh1:'Warhammer I', wh2:'Warhammer II', wh3:'Warhammer III' };
+  const titleBlock = document.createElement('div');
+  titleBlock.className = 'card-title-block';
+  titleBlock.innerHTML = `<span class="game-badge ${dlc.game}">${gameNames[dlc.game]}</span><h3>${dlc.name}</h3>`;
+
+  const priceBlock = document.createElement('div');
+  priceBlock.className = 'price-block';
+  priceBlock.innerHTML = `<span class="price">${dlc.price}</span><span class="year">${dlc.year}</span>`;
+
+  const top = document.createElement('div');
+  top.className = 'card-top';
+  top.appendChild(titleBlock);
+  top.appendChild(priceBlock);
+  card.appendChild(top);
+
+  const factionsDiv = document.createElement('div');
+  factionsDiv.className = 'factions';
+  dlc.factions.forEach(f => {
+    const tag = document.createElement('span');
+    tag.className = `faction-tag ${FACTION_ALIGN[f] || 'order'}`;
+    tag.textContent = f;
+    factionsDiv.appendChild(tag);
+  });
+  card.appendChild(factionsDiv);
+
+  const lordsLabel = document.createElement('div');
+  lordsLabel.className = 'section-label';
+  lordsLabel.textContent = 'Neue Legendary Lords';
+  card.appendChild(lordsLabel);
+
+  const ul = document.createElement('ul');
+  ul.className = 'lords';
+  dlc.lords.forEach(l => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span class="lord-icon">⚔</span><span class="lord-name">${l.name}</span><span class="lord-faction">(${l.faction})</span>`;
+    ul.appendChild(li);
+  });
+  card.appendChild(ul);
+
+  if(dlc.units){
+    const unitsLabel = document.createElement('div');
+    unitsLabel.className = 'section-label';
+    unitsLabel.textContent = 'Neue Einheiten (Auswahl)';
+    card.appendChild(unitsLabel);
+    const unitsDiv = document.createElement('div');
+    unitsDiv.className = 'units-list';
+    unitsDiv.textContent = dlc.units;
+    card.appendChild(unitsDiv);
+  }
+
+  const note = document.createElement('div');
+  note.className = 'note';
+  note.textContent = dlc.note;
+  card.appendChild(note);
+
+  const footer = document.createElement('div');
+  footer.className = 'card-footer';
+  if(dlc.steamId){
+    footer.innerHTML = `<a class="steam-link" href="https://store.steampowered.com/app/${dlc.steamId}/" target="_blank" rel="noopener">Im Steam Shop ansehen →</a>`;
+  } else {
+    footer.innerHTML = `<span class="steam-link delisted">⚠ Nicht mehr verfügbar</span>`;
+  }
+  card.appendChild(footer);
+
+  return card;
+}
+
+dlcs.forEach(dlc => grid.appendChild(buildCard(dlc)));
+
+function applyFilters(){
+  const term = searchInput.value.trim().toLowerCase();
+  const game = gameFilter.value;
+  const faction = factionFilter.value;
+  const rating = ratingFilter.value;
+  let visible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const matchesTerm  = !term   || card.dataset.searchable.includes(term);
+    const matchesGame  = game   === 'all' || card.dataset.game === game;
+    const matchesFaction = faction === 'all' || card.dataset.factions.split(',').includes(faction);
+    const matchesRating = rating === 'all' || card.dataset.rating === rating;
+    const show = matchesTerm && matchesGame && matchesFaction && matchesRating;
+    card.classList.toggle('hidden', !show);
+    if(show) visible++;
+  });
+
+  let empty = document.getElementById('emptyState');
+  if(visible === 0){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.id = 'emptyState';
+      empty.className = 'empty';
+      empty.innerHTML = '<span style="font-size:2.5rem;display:block;margin-bottom:12px">📜</span><strong>Keine Schriften gefunden</strong>Dieser Teil des Großen Wesens ist noch nicht entziffert — prüfe deine Suchbegriffe.';
+      grid.appendChild(empty);
+    }
+  } else if(empty){
+    empty.remove();
+  }
+
+  resultsCount.textContent = `${visible} von ${dlcs.length} DLCs`;
+}
+
+searchInput.addEventListener('input', applyFilters);
+gameFilter.addEventListener('change', applyFilters);
+factionFilter.addEventListener('change', applyFilters);
+ratingFilter.addEventListener('change', applyFilters);
+
+applyFilters();
+</script>
+
+</body>
+</html>
