@@ -292,12 +292,32 @@
   }
   footer a{ color: var(--accent); text-decoration: none; }
 
+  .last-updated{
+    position: fixed;
+    top: 0; right: 0;
+    z-index: 100;
+    background: rgba(27,31,43,0.92);
+    backdrop-filter: blur(4px);
+    border-bottom-left-radius: 8px;
+    border: 1px solid var(--line);
+    border-top: none; border-right: none;
+    padding: 5px 12px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    pointer-events: none;
+  }
+  .last-updated span{ color: var(--accent); }
+
   @media (max-width: 560px){
     .search-row{ flex-wrap: wrap; }
   }
 </style>
 </head>
 <body>
+
+<div class="last-updated">Aktualisiert: <span>Juni 2026</span></div>
 
 <div class="stripe-bar"></div>
 

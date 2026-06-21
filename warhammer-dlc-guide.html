@@ -353,6 +353,24 @@
   }
   footer a{ color: var(--gold); text-decoration: none; }
 
+  .last-updated{
+    position: fixed;
+    top: 0; right: 0;
+    z-index: 100;
+    background: rgba(14,11,7,0.94);
+    backdrop-filter: blur(4px);
+    border-bottom-left-radius: 3px;
+    border: 1px solid var(--line);
+    border-top: none; border-right: none;
+    padding: 5px 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    font-family: var(--display);
+    pointer-events: none;
+  }
+  .last-updated span{ color: var(--gold); }
+
   @media (max-width: 640px){
     .toolbar-inner{ flex-direction: column; }
     .results-count{ margin-left: 0; padding-top: 0; }
@@ -360,6 +378,8 @@
 </style>
 </head>
 <body>
+
+<div class="last-updated">Aktualisiert: <span>Juni 2026</span></div>
 
 <div class="heraldic-bar"></div>
 
