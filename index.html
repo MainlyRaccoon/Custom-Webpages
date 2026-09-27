@@ -1,6 +1,3 @@
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -9,7 +6,7 @@ Index · HTML
 <title>TrashCats Rezeptbuch</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap');
- 
+
 :root{
   --bg: #1b1f2b;
   --bg-soft: #242a3a;
@@ -60,7 +57,7 @@ header .eyebrow{ font-size: 12px; letter-spacing: 0.3em; color: var(--moss); tex
 header h1{ font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 6.5vw, 4.2rem); margin: 0; letter-spacing: 0.01em; }
 header h1 .highlight{ color: var(--accent); }
 header p{ margin: 16px auto 0; max-width: 540px; color: var(--text-dim); font-size: 15px; }
- 
+
 .toolbar{ position: sticky; top: 0; z-index: 10; background: rgba(27,31,43,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); padding: 16px 24px; }
 .toolbar-inner{ max-width: 1000px; margin: 0 auto; }
 .search-row{ display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
@@ -72,11 +69,11 @@ header p{ margin: 16px auto 0; max-width: 540px; color: var(--text-dim); font-si
 .tag-pill{ font-family: var(--display); font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 999px; border: 2px solid var(--line); background: transparent; color: var(--text-dim); cursor: pointer; transition: all 0.15s ease; }
 .tag-pill:hover{ border-color: var(--accent-dim); color: var(--text); }
 .tag-pill.active{ background: var(--accent); border-color: var(--accent); color: #1b1f2b; }
- 
+
 main{ max-width: 1000px; margin: 0 auto; padding: 36px 24px 80px; }
 .results-count{ font-size: 12px; color: var(--text-dim); margin-bottom: 16px; text-align: right; }
 .grid{ display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
- 
+
 .card{ background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease; position: relative; overflow: hidden; }
 .card::before{ content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(90deg, var(--stripe-dark) 0 14px, var(--cream) 14px 20px); opacity: 0.5; }
 .card:hover{ transform: translateY(-3px); border-color: var(--cat-dim); box-shadow: 0 10px 24px -12px rgba(185,140,242,0.35); }
@@ -91,22 +88,25 @@ main{ max-width: 1000px; margin: 0 auto; padding: 36px 24px 80px; }
 .card-cta{ font-family: var(--display); font-size: 12.5px; font-weight: 700; color: var(--cat); display: flex; align-items: center; gap: 6px; margin-top: auto; }
 .card:hover .card-cta .arrow{ transform: translateX(3px); }
 .card-cta .arrow{ transition: transform 0.15s ease; }
- 
+
 .empty{ text-align: center; padding: 60px 20px; color: var(--text-dim); font-size: 14px; grid-column: 1 / -1; }
 .empty .big{ font-size: 48px; display: block; margin-bottom: 12px; }
 .empty strong{ display: block; font-family: var(--display); font-size: 1.3rem; color: var(--cat); margin-bottom: 6px; }
- 
+
 footer{ text-align: center; padding: 28px 24px 40px; font-size: 11px; color: var(--text-dim); border-top: 1px solid var(--line); }
- 
+
 .last-updated{ position: fixed; top: 0; right: 0; z-index: 100; background: rgba(27,31,43,0.92); backdrop-filter: blur(4px); border-bottom-left-radius: 8px; border: 1px solid var(--line); border-top: none; border-right: none; padding: 5px 12px; font-size: 10px; letter-spacing: 0.08em; color: var(--text-dim); font-family: var(--sans); pointer-events: none; }
 .last-updated span{ color: var(--accent); }
- 
+
 /* ===== Rezept-Detail Overlay ===== */
 .overlay{ position: fixed; inset: 0; background: rgba(12,14,20,0.82); backdrop-filter: blur(3px); z-index: 200; display: none; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; }
 .overlay.open{ display: flex; }
 .detail{ background: var(--bg-card); border: 1px solid var(--cat-dim); border-radius: 18px; max-width: 640px; width: 100%; padding: 32px; position: relative; box-shadow: 0 20px 60px -20px rgba(185,140,242,0.4); }
 .detail-close{ position: absolute; top: 16px; right: 16px; background: var(--bg-soft); border: 1px solid var(--line); color: var(--text-dim); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; line-height: 1; }
 .detail-close:hover{ color: var(--text); border-color: var(--cat); }
+.copy-btn{ position: absolute; top: 16px; right: 60px; display: flex; align-items: center; gap: 6px; background: var(--bg-soft); border: 1px solid var(--line); color: var(--text-dim); padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--display); font-size: 12px; font-weight: 600; transition: all 0.15s ease; }
+.copy-btn:hover{ color: var(--text); border-color: var(--cat); }
+.copy-btn.copied{ background: var(--cat); border-color: var(--cat); color: #1b1f2b; }
 .detail-head{ display: flex; gap: 14px; align-items: center; margin-bottom: 8px; }
 .detail-head .icon{ font-size: 34px; }
 .detail h2{ font-family: var(--display); margin: 0; font-size: 1.6rem; }
@@ -116,23 +116,23 @@ footer{ text-align: center; padding: 28px 24px 40px; font-size: 11px; color: var
 .detail ul, .detail ol{ margin: 0; padding-left: 22px; }
 .detail li{ margin-bottom: 7px; font-size: 14.5px; }
 .detail .notes{ font-size: 13.5px; color: var(--text-dim); background: var(--bg-soft); border-radius: 10px; padding: 14px 16px; margin-top: 20px; }
- 
+
 @media (max-width: 560px){ .search-row{ flex-wrap: wrap; } .detail{ padding: 24px 18px; } }
 </style>
 </head>
 <body>
 <div class="last-updated">Aktualisiert: <span>September 2026</span></div>
 <div class="stripe-bar"></div>
- 
+
 <header>
   <div class="stars"></div>
   <div class="content">
     <div class="eyebrow">// Nachts in der Vorratskammer unterwegs</div>
-    <h1>🦝🐈‍⬛ Mainlys <span class="highlight">Rezeptbuch</span></h1>
+    <h1>🦝🐈‍⬛ TrashCats <span class="highlight">Rezeptbuch</span></h1>
     <p>Rezepte, die nachts in der Küche entstehen — zum Nachkochen, Anpassen und Genießen. Einfach durchsuchen oder nach Kategorie filtern.</p>
   </div>
 </header>
- 
+
 <div class="toolbar">
   <div class="toolbar-inner">
     <div class="search-row">
@@ -144,18 +144,18 @@ footer{ text-align: center; padding: 28px 24px 40px; font-size: 11px; color: var
     </div>
   </div>
 </div>
- 
+
 <main>
   <div class="results-count" id="resultsCount"></div>
   <div class="grid" id="grid"></div>
 </main>
- 
-<footer>Mainlys Rezeptbuch · Stand: September 2026 🦝🐈‍⬛</footer>
- 
+
+<footer>TrashCats Rezeptbuch · Stand: September 2026 🦝🐈‍⬛</footer>
+
 <div class="overlay" id="overlay">
   <div class="detail" id="detail"></div>
 </div>
- 
+
 <script>
 /*
 NEUES REZEPT HINZUFÜGEN:
@@ -175,7 +175,7 @@ Einfach ein weiteres Objekt in das "recipes"-Array eintragen.
 const recipes = [
   {
     icon: "🍞",
-    name: "Weißbrot nach Olivenbrot-Art",
+    name: "Weißbrot nach Olivenbrot-Art (ohne Oliven)",
     category: "Brot & Gebäck",
     tags: ["Brot", "Vegan", "Ofen"],
     time: "10–24 Std Gare + 25–30 Min Backzeit",
@@ -195,9 +195,36 @@ const recipes = [
       "Backen: Das Brot circa 15 Minuten bei 240 °C backen, dann die Temperatur auf 200 °C reduzieren und nochmals 10–15 Minuten goldbraun backen."
     ],
     notes: "Statt Oliven kannst du den Teig z.B. mit Walnüssen, getrockneten Tomaten, Röstzwiebeln, Rosmarin oder anderen frischen Kräutern verfeinern. Schmeckt am besten frisch mit etwas Olivenöl und Salz."
+  },
+  {
+    icon: "🍪",
+    name: "Vegane Kekse",
+    category: "Kekse & Gebäck",
+    tags: ["Vegan", "Kekse", "Ofen"],
+    time: "10–12 Min Backzeit",
+    difficulty: "Einfach",
+    desc: "Schnelle vegane Kekse mit Schokodrops – ohne Ei, fertig in unter 30 Minuten.",
+    ingredients: [
+      "200 g Mehl",
+      "125 g Butter (Sanella oder Rama)",
+      "90 g Puderzucker",
+      "1 Päckchen Vanillezucker",
+      "1 TL Backpulver",
+      "1 Prise Salz",
+      "2 EL Hafermilch",
+      "1 Packung Schokodrops"
+    ],
+    steps: [
+      "Teig vorbereiten: Mehl, vegane Butter, Puderzucker, Vanillezucker, Backpulver, Salz und Hafermilch in eine Schüssel geben.",
+      "Kneten: Alles gut zusammenkneten.",
+      "Schokodrops einarbeiten: Die Schokodrops hinzufügen und nur kurz unterrühren.",
+      "Formen: Aus dem Teig kleine Bällchen rollen.",
+      "Backblech vorbereiten: Die Bällchen auf ein Backblech setzen und leicht flach drücken.",
+      "Backen: Im vorgeheizten Ofen bei 180 °C Umluft etwa 10–12 Minuten backen."
+    ]
   }
 ];
- 
+
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const tagFilters = document.getElementById('tagFilters');
@@ -205,7 +232,7 @@ const resultsCount = document.getElementById('resultsCount');
 const overlay = document.getElementById('overlay');
 const detail = document.getElementById('detail');
 let activeTag = 'all';
- 
+
 const allTags = [...new Set(recipes.flatMap(r => r.tags))].sort();
 allTags.forEach(tag => {
   const btn = document.createElement('button');
@@ -214,7 +241,7 @@ allTags.forEach(tag => {
   btn.textContent = tag;
   tagFilters.appendChild(btn);
 });
- 
+
 function buildCard(recipe, index){
   const el = document.createElement('div');
   el.className = 'card';
@@ -233,9 +260,10 @@ function buildCard(recipe, index){
   el.addEventListener('click', () => openDetail(recipe));
   return el;
 }
- 
+
 function openDetail(recipe){
   detail.innerHTML = `
+    <button class="copy-btn" id="copyBtn">📋 Kopieren</button>
     <button class="detail-close" id="closeBtn">✕</button>
     <div class="detail-head"><span class="icon">${recipe.icon}</span><h2>${recipe.name}</h2></div>
     <div class="detail-meta"><span><b>Kategorie:</b> ${recipe.category}</span><span><b>Zeit:</b> ${recipe.time}</span><span><b>Level:</b> ${recipe.difficulty}</span></div>
@@ -250,13 +278,47 @@ function openDetail(recipe){
   `;
   overlay.classList.add('open');
   document.getElementById('closeBtn').addEventListener('click', closeDetail);
+  const copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', () => copyRecipe(recipe, copyBtn));
 }
 function closeDetail(){ overlay.classList.remove('open'); }
+
+function recipeToText(recipe){
+  let text = `${recipe.name}\n`;
+  text += `Kategorie: ${recipe.category} · Zeit: ${recipe.time} · Level: ${recipe.difficulty}\n\n`;
+  text += `Zutaten:\n` + recipe.ingredients.map(i => `- ${i}`).join('\n') + '\n\n';
+  text += `Zubereitung:\n` + recipe.steps.map((s, i) => `${i + 1}. ${s}`).join('\n');
+  if(recipe.notes){ text += `\n\nNotizen:\n${recipe.notes}`; }
+  return text;
+}
+function copyRecipe(recipe, btn){
+  const text = recipeToText(recipe);
+  const done = () => {
+    btn.textContent = '✅ Kopiert';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Kopieren'; btn.classList.remove('copied'); }, 1800);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand('copy'); done(); } catch(e){ /* Kopieren nicht möglich */ }
+  document.body.removeChild(ta);
+}
 overlay.addEventListener('click', (e) => { if(e.target === overlay) closeDetail(); });
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeDetail(); });
- 
+
 recipes.forEach((r, i) => grid.appendChild(buildCard(r, i)));
- 
+
 function applyFilters(){
   const term = searchInput.value.trim().toLowerCase();
   let visible = 0;
@@ -291,4 +353,3 @@ applyFilters();
 </script>
 </body>
 </html>
- 
