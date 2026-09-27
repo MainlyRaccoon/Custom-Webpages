@@ -51,12 +51,3 @@ Der Teil eines Steps vor dem ersten Doppelpunkt wird in der Detailansicht automa
 - Theme: Raccoon 🦝 + Black Cat 🐈‍⬛ — Orange (`--accent`) für den Waschbären, Violett (`--cat`) für die Katze, dunkler Hintergrund.
 
 ---
-
-## Ältere Projekte
-
-Diese Dateien liegen noch im Repo, sind aber nicht mehr Teil des Rezeptbuchs:
-
-| Datei                      | Beschreibung                                     |
-| -------------------------- | ------------------------------------------------ |
-| `payday2-dlc-guide.html`   | PAYDAY 2 Waffen-DLC Guide mit Ampel-Bewertung    |
-| `warhammer-dlc-guide.html` | Total War: Warhammer DLC Guide (WH I / II / III) |
