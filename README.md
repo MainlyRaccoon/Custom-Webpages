@@ -1,74 +1,62 @@
-# Mainlys Custom Webpages
+# Mainlys Rezeptbuch
 
-Sammlung selbst gebauter Webseiten — von Gaming-Guides bis Tools.
-Jede Seite ist eine eigenständige HTML-Datei ohne Build-System.
+Eine einzelne, selbstgebaute Rezeptsammlung — kein Build-System, keine Abhängigkeiten außer Google Fonts.
 
-## Seiten
+## Seite
 
-| Datei | Beschreibung |
-|---|---|
-| `index.html` | Hub-Übersicht mit Suchfunktion und Filter-Pills |
-| `payday2-dlc-guide.html` | PAYDAY 2 Waffen-DLC Guide mit Ampel-Bewertung |
-| `warhammer-dlc-guide.html` | Total War: Warhammer DLC Guide (WH I / II / III) |
+| Datei         | Beschreibung                                                      |
+| ------------- | ------------------------------------------------------------------ |
+| `index.html`  | Rezeptbuch mit Suchfunktion, Filter-Pills und Rezept-Detailansicht |
 
 ---
 
-## Regeln für neue Seiten
+## Regeln
 
-### 1. Datum der letzten Aktualisierung — oben rechts, jede Seite
+### 1. Datum der letzten Aktualisierung — oben rechts
 
-Jede HTML-Seite muss in der **oberen rechten Ecke** ein Badge mit dem Datum der letzten inhaltlichen Aktualisierung zeigen.
+Die Seite zeigt in der **oberen rechten Ecke** ein Badge mit dem Datum der letzten inhaltlichen Aktualisierung (`.last-updated` im `<body>`). Anpassen, sobald ein Rezept hinzugefügt, entfernt oder inhaltlich geändert wird. Reine CSS/Design-Fixes zählen nicht als inhaltliche Aktualisierung.
 
-**HTML** — direkt nach `<body>`, vor dem ersten Layout-Element:
-```html
-<div class="last-updated">Aktualisiert: <span>Monat JJJJ</span></div>
+### 2. Neues Rezept eintragen
+
+Jedes Rezept ist ein Objekt im `recipes`-Array in `index.html`:
+
 ```
-
-**CSS** — ans Ende des `<style>`-Blocks, vor dem letzten `@media`-Block:
-```css
-.last-updated{
-  position: fixed;
-  top: 0; right: 0;
-  z-index: 100;
-  background: rgba(0,0,0,0.88);
-  backdrop-filter: blur(4px);
-  border-bottom-left-radius: 4px;
-  border: 1px solid <Linienfarbe der Seite>;
-  border-top: none; border-right: none;
-  padding: 5px 12px;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: <gedimmte Textfarbe der Seite>;
-  font-family: <Schriftart der Seite>;
-  pointer-events: none;
-}
-.last-updated span{ color: <Akzentfarbe der Seite>; }
-```
-
-Das Datum anpassen, sobald sich **Inhalte** ändern (neue Einträge, korrigierte Daten).
-Reine CSS/Design-Fixes zählen nicht als inhaltliche Aktualisierung.
-
----
-
-### 2. Neue Seite im Hub eintragen
-
-Jede neue Seite bekommt einen Eintrag im `sites`-Array in `index.html`:
-
-```js
 {
-  icon: "🎮",           // Emoji als Icon
-  name: "Titel",        // Angezeigter Name
-  desc: "Kurzbeschreibung der Seite.",
-  tags: ["Gaming"],     // Werden automatisch zu Filter-Pills
-  url: "dateiname.html" // Relativer Pfad
+  icon: "🍞",              // Emoji als Icon
+  name: "Titel",           // Angezeigter Rezeptname
+  category: "Brot & Gebäck", // Hauptkategorie
+  tags: ["Brot", "Vegan"], // Werden automatisch zu Filter-Pills
+  time: "10–24 Std Gare + 25–30 Min Backzeit",
+  difficulty: "Einfach",   // Einfach / Mittel / Schwer
+  desc: "Kurzbeschreibung für die Karte.",
+  ingredients: [
+    "500 g Mehl",
+    "300 ml Wasser"
+  ],
+  steps: [
+    "Teig kneten: Beschreibung des Schritts.",
+    "Backen: Beschreibung des Schritts."
+  ],
+  notes: "Optionale Tipps oder Varianten." // Feld weglassen, wenn nicht nötig
 }
 ```
 
----
+Der Teil eines Steps vor dem ersten Doppelpunkt wird in der Detailansicht automatisch fett dargestellt (z.B. **Teig kneten:**).
 
 ### 3. Allgemeine Konventionen
 
-- Alle Seiten sind **einzelne HTML-Dateien** (CSS + JS inline, kein Build-Schritt).
+- Die Seite ist eine **einzelne HTML-Datei** (CSS + JS inline, kein Build-Schritt).
 - Sprache: **Deutsch** (`<html lang="de">`).
 - Google Fonts sind erlaubt (via `@import`), keine anderen externen Abhängigkeiten.
-- Jede Seite hat einen **"← Zurück zum Hub"**-Link zurück zu `index.html`.
+- Theme: Raccoon 🦝 + Black Cat 🐈‍⬛ — Orange (`--accent`) für den Waschbären, Violett (`--cat`) für die Katze, dunkler Hintergrund.
+
+---
+
+## Ältere Projekte
+
+Diese Dateien liegen noch im Repo, sind aber nicht mehr Teil des Rezeptbuchs:
+
+| Datei                      | Beschreibung                                     |
+| -------------------------- | ------------------------------------------------ |
+| `payday2-dlc-guide.html`   | PAYDAY 2 Waffen-DLC Guide mit Ampel-Bewertung    |
+| `warhammer-dlc-guide.html` | Total War: Warhammer DLC Guide (WH I / II / III) |
