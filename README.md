@@ -1,4 +1,4 @@
-# Mainlys Rezeptbuch
+# TrashCats Rezeptbuch
 
 Eine einzelne, selbstgebaute Rezeptsammlung — kein Build-System, keine Abhängigkeiten außer Google Fonts.
 
