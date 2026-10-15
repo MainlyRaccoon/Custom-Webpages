@@ -174,10 +174,35 @@ Einfach ein weiteres Objekt in das "recipes"-Array eintragen.
 */
 const recipes = [
     {
+      icon: "🍕",
+      name: "Pizzaschnecken",
+      category: "Herzhaftes Gebäck",
+      tags: ["Herzhaft", "Mama", "Ofen", "Pizza"],
+      time: "10–15 Min Backzeit",
+      difficulty: "Einfach",
+      desc: "Knusprige Blätterteig-Schnecken mit Salami, Schinken und Käse – schnell gerollt und perfekt als Snack.",
+      ingredients: [
+        "Blätterteig",
+        "Salami",
+        "Schinken",
+        "Pilze (nach Belieben)",
+        "Tomatenmark",
+        "geriebener Käse",
+        "etwas Pizzagewürz (nach Belieben)"
+      ],
+      steps: [
+        "Teig ausrollen: Den Blätterteig ausrollen.",
+        "Belag vorbereiten: Salami, Schinken (und Pilze) klein schneiden.",
+        "Belegen: Tomatenmark auf den Blätterteig streichen und Salami, Schinken, geriebenen Käse und eventuell etwas Pizzagewürz darauf verteilen.",
+        "Rollen: Den Teig zusammenrollen und in Scheiben schneiden.",
+        "Backen: Die Schnecken 10–15 Minuten bei 200 °C backen."
+      ]
+    },
+    {
     icon: "🍲",
     name: "Mitternachtssuppe",
     category: "Hauptgericht",
-    tags: ["Suppe", "Hackfleisch", "Herzhaft","Mama"],
+    tags: ["Herzhaft", "Mama", "Suppe"],
     time: "ca. 30 Min",
     difficulty: "Einfach",
     desc: "Cremige Hackfleisch-Käse-Suppe mit Lauch und Möhren – schnell gemacht und perfekt für späte Küchenstunden.",
@@ -201,7 +226,7 @@ const recipes = [
     icon: "🍞",
     name: "Weißbrot nach Olivenbrot-Art",
     category: "Brot & Gebäck",
-    tags: ["Brot", "Vegan", "Ofen"],
+    tags: ["Brot", "Ofen", "Vegan"],
     time: "10–24 Std Gare + 25–30 Min Backzeit",
     difficulty: "Einfach",
     desc: "Knuspriges, luftiges Weißbrot mit langer kalter Gare – die Basis des klassischen Olivenbrot-Rezepts, einfach ohne Oliven.",
@@ -224,7 +249,7 @@ const recipes = [
     icon: "🍪",
     name: "Vegane Kekse",
     category: "Kekse & Gebäck",
-    tags: ["Vegan", "Kekse", "Ofen"],
+    tags: [ "Kekse", "Ofen", "Vegan"],
     time: "10–12 Min Backzeit",
     difficulty: "Einfach",
     desc: "Schnelle vegane Kekse mit Schokodrops – ohne Ei, fertig in unter 30 Minuten.",
